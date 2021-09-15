@@ -1,21 +1,12 @@
-import PropTypes from "prop-types";
-import {
-  FeedbackButtonBtn,
-  NameSpan,
-  ListDiv,
-  ItemButtonLi,
-} from "./FeedbackOptions.styled";
+import PropTypes from 'prop-types';
+import { FeedbackButtonBtn, NameSpan, ListDiv, ItemButtonLi } from './FeedbackOptions.styled';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ListDiv>
-      {options.map((option) => (
+      {options.map(option => (
         <ItemButtonLi key={option}>
-          <FeedbackButtonBtn
-            type="button"
-            id={option}
-            onClick={onLeaveFeedback}
-          >
+          <FeedbackButtonBtn type='button' name={option} onClick={onLeaveFeedback}>
             <NameSpan>{option}</NameSpan>
           </FeedbackButtonBtn>
         </ItemButtonLi>
@@ -27,6 +18,5 @@ export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.oneOf(["good", "neutral", "bad"]))
-    .isRequired,
+  options: PropTypes.arrayOf(PropTypes.oneOf(['good', 'neutral', 'bad'])).isRequired,
 };
