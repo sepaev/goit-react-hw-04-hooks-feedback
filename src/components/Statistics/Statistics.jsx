@@ -1,28 +1,28 @@
-import PropTypes from "prop-types";
-import { ItemLi, ItemP, ListDiv, NameSpan } from "./Statistics.styled";
-import Notification from "../Notification/Notification";
+import PropTypes from 'prop-types';
+import { ItemLi, ItemP, ListDiv, NameSpan } from './Statistics.styled';
+import Notification from '../Notification';
 
-const Statistics = (props) => {
+const Statistics = props => {
   const stats = Object.keys(props);
   return (
     <>
       {props.total > 0 && (
         <ListDiv>
-          {stats.map((stat) => (
+          {stats.map(stat => (
             <ItemLi key={stat}>
               <ItemP>
-                {stat !== "positivePercentage" ? stat : "Positive precentage"}
-                {": "}
+                {stat !== 'positivePercentage' ? stat : 'Positive precentage'}
+                {': '}
                 <NameSpan>
                   {props[stat]}
-                  {stat === "positivePercentage" && "%"}
+                  {stat === 'positivePercentage' && '%'}
                 </NameSpan>
               </ItemP>
             </ItemLi>
           ))}
         </ListDiv>
       )}
-      {props.total === 0 && <Notification message="No feedback" />}
+      {props.total === 0 && <Notification message='No feedback' />}
     </>
   );
 };
