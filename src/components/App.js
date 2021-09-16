@@ -7,27 +7,26 @@ function App() {
   const [good, setGood] = useState(0);
   const [bad, setBad] = useState(0);
   const [neutral, setNeutral] = useState(0);
-  console.log(good);
-  const countPositiveFeedback = (total, good) => {
-    const result = (parseInt(good) * 100) / total;
-    return total ? parseInt(result.toFixed(0)) : 0;
+
+  const countPositiveFeedback = () => {
+    const total = countTotalFeedback();
+    const result = (good / total) * 100;
+    return total ? parseInt(result) : 0;
   };
   const countTotalFeedback = () => {
-    const state = { good, bad, neutral };
-    if (state) return Object.values(state).reduce((counter, value) => (counter += value), 0);
-    return 0;
+    return good + bad + neutral;
   };
 
   const onLeaveFeedback = e => {
     switch (e.target.name) {
       case 'good':
-        setGood(good ? good + 1 : 1);
+        setGood(prev => (prev ? prev + 1 : 1));
         break;
       case 'neutral':
-        setNeutral(neutral ? neutral + 1 : 1);
+        setNeutral(prev => (prev ? prev + 1 : 1));
         break;
       case 'bad':
-        setBad(bad ? bad + 1 : 1);
+        setBad(prev => (prev ? prev + 1 : 1));
         break;
       default:
         return;
@@ -35,7 +34,7 @@ function App() {
   };
   // const { good, bad, neutral } = state;
   const total = countTotalFeedback();
-  const positivePercentage = countPositiveFeedback(total, good);
+  const positivePercentage = countPositiveFeedback();
   const options = ['good', 'bad', 'neutral'];
   return (
     <>
